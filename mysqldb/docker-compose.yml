@@ -1,0 +1,6 @@
+mysqldb:
+  container_name: mysqldb
+  build: .
+  ports:
+   - "3306"
+   - "3380:80"
