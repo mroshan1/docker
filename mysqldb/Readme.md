@@ -1,5 +1,5 @@
 # Installation Steps:
-1. Ensure Docker Toolbox is installed on your host
+1. Ensure Docker Toolbox is installed on your host <br>
      https://www.docker.com/docker-toolbox
 2. Open Docker Machine shell
 3. Run following command
