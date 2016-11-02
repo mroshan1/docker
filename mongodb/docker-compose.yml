@@ -1,5 +1,34 @@
-mongodb:
-  container_name: mongodb
-  image: mongo:2.6
-  ports:
-   - "27017:27017"
+version: '2'
+
+services: 
+    mongodb01:
+        image: mongo:2.6
+        ports:
+            - "27017:27017"
+        volumes:
+            - ./data1:/data
+        entrypoint: [ "/usr/local/bin/mongod", "--dbpath", "/data", "--replSet", "rs", "--journal", "--smallfiles", "--rest" ]
+    mongodb02:
+        image: mongo:2.6
+        ports:
+            - "27018:27017"
+        volumes:
+            - ./data2:/data
+        entrypoint: [ "/usr/local/bin/mongod", "--dbpath", "/data", "--replSet", "rs", "--journal", "--smallfiles", "--rest" ]
+    mongodb03:
+        image: mongo:2.6
+        ports:
+            - "27019:27017"
+        volumes:
+            - ./data3:/data
+        entrypoint: [ "/usr/local/bin/mongod", "--dbpath", "/data", "--replSet", "rs", "--journal", "--smallfiles", "--rest" ]
+    mongoclient:
+        image: mongo:2.6
+        volumes:
+            - ./:/scripts
+        depends_on:
+            - mongodb01
+            - mongodb02
+            - mongodb03
+        entrypoint: [ "/scripts/cluster_setup.sh" ]
+

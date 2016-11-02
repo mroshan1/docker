@@ -1,14 +1,20 @@
 # Installation Steps:
-1. Ensure Docker Toolbox is installed on your host 
+* Ensure Docker is installed on your host 
 
-     https://www.docker.com/docker-toolbox
-     
-2. Open Docker Machine shell
+    https://docs.docker.com/engine/installation/
 
-3. Run following command
-   `docker-compose up`
+   On you can install the Docker Beta:
+     https://docs.docker.com/engine/installation/mac/#/docker-for-mac
+
+* checkout the code
+
+* Run following command
+   `docker-compose up -d`
    
 4.  Wait for steps to complete
 
-5. You should be able to access mongo at `192.168.99.100:27017`
-   
+5. You should be able to access mongo cluster at 
+      localhost:27017
+      localhost:27018
+      localhost:27019
+        
