@@ -1,5 +1,5 @@
-nor1upg_db:
-  container_name: nor1upg_db
+mysql_db:
+  container_name: mysql_db
   build: .
   ports:
    - "3306"

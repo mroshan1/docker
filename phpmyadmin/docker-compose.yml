@@ -11,11 +11,11 @@ services:
         - "80"
         - "70"
     links:
-        - nor1upg_db
+        - mysql_db
 
-  nor1upg_db:
-    container_name: nor1upg_db
-    build: nor1upg_db/.
+  mysql_db:
+    container_name: mysql_db
+    build: mysql_db/.
     ports:
         - "3306"
         - "3380:80"

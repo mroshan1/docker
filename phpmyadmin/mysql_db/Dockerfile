@@ -19,8 +19,7 @@ RUN apt-get install -y apache2
 RUN apt-get install -y php5 libapache2-mod-php5 php5-mcrypt
 
 RUN apt-get install -y wget bzip2
-RUN wget -q -O - --no-check-certificate https://s3.amazonaws.com/nor1.internal.share/QA/nor1_upg_db1_dal_us.latest.sql.bz2  | bunzip2 >/root/nor1upg_db.sql
-RUN wget -q -O - --no-check-certificate https://s3.amazonaws.com/nor1.internal.share/QA/analytics_schema.sql >/root/analytics_schema.sql
+RUN wget -q -O - --no-check-certificate https://s3.amazonaws.com/bucket/mysql.sql.bz2  | bunzip2 >/root/testdb.sql
 
 # Install phpMyAdmin
 RUN mysqld & \
@@ -28,10 +27,8 @@ RUN mysqld & \
     sleep 5; \
     printf y\\n\\n\\n\\n | apt-get install -y phpmyadmin; \
     sleep 15; \
-    mysqladmin -u root create nor1_upg_db_dal_us; \
-    mysqladmin -u root create analytics; \
-    mysql -u root nor1_upg_db_dal_us </root/nor1upg_db.sql; \
-    mysql -u root analytics </root/analytics_schema.sql; \
+    mysqladmin -u root create testdb; \
+    mysql -u root testdb </root/testdb.sql; \
     mysqladmin -u root shutdown
 
 RUN sed -i "s#// \$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\] = TRUE;#\$cfg\['Servers'\]\[\$i\]\['AllowNoPassword'\] = TRUE;#g" /etc/phpmyadmin/config.inc.php 
